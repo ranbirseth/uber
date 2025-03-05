@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const userSchema = new mongoose.Schema({
-    name: {
+    fullname: {
         firstname: {
             type: String,
             required: true,
@@ -33,8 +33,23 @@ const userSchema = new mongoose.Schema({
 });
 
 
+userSchema.methods.generateAuthToken = async function () {
+    const user = this;
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
+    return token;
+};
 
+userSchema.methods.comparePassword = async function (password) {
+    const user = this;
+    return await bcrypt.compare(password, user.password);
+};
 
-const User = mongoose.model('User', userSchema);
+userSchema.methods.hashPassword = async function () {
+    const user = this;
+    if (user.isModified('password')) {
+        user.password = await bcrypt.hash(user.password, 8);
+    }
+};
 
-module.exports = User;
+ const userModel = mongoose.model('User', userSchema);
+module.exports = userModel;
