@@ -27,13 +27,9 @@ The backend is built with Node.js and Express. It includes the following main co
     npm install
     ```
 
-3. Create a [.env](http://_vscodecontentref_/24) file with the following content:
-    ```
-    PORT=4000
-    MONGO_URI=mongodb://localhost:27017/uber
-    ```
 
-4. Start the server:
+
+3. Start the server:
     ```sh
     npm start
     ```
