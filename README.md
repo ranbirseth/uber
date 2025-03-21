@@ -27,12 +27,38 @@ The backend is built with Node.js and Express. It includes the following main co
     npm install
     ```
 
-
-
 3. Start the server:
     ```sh
     npm start
     ```
+
+### API Endpoints
+
+#### User Registration
+// ...existing registration endpoint documentation...
+
+#### User Login
+
+- **Endpoint:** `/user/login`  
+- **Method:** POST  
+- **Request Body:**
+  ```json
+  {
+    "email": "valid email string",
+    "password": "string (min 5 characters)"
+  }
+  ```
+- **Success Response (200):**
+  ```json
+  {
+    "user": { "id": "user_id", "email": "user@example.com", ... },
+    "token": "jwt_token_here"
+  }
+  ```
+- **Error Responses:**
+  - 404: User not found.
+  - 401: Invalid credentials.
+  - 400: Validation error.
 
 ## Frontend
 
@@ -50,22 +76,22 @@ The frontend is built with React and Vite. It includes the following main compon
     ```sh
     cd Frontend/Uber-Frontend
     ```
-
 2. Install the dependencies:
     ```sh
     npm install
     ```
-
 3. Start the development server:
     ```sh
     npm run dev
     ```
 
+Note: Make sure you run these commands in the `Uber-Frontend` folder, as that's where package.json is located.
+
 ## License
 
 This project is licensed under the MIT License.
-                
-                
-                
-        
-        
+
+
+
+
+
